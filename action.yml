@@ -7,6 +7,9 @@ inputs:
   name:
     description: 'Name of the branch that will be deployed'
     required: true
+outputs:
+  result:
+    description: The generated spicy-proton name
 runs:
   using: 'docker'
   image: 'Dockerfile'
