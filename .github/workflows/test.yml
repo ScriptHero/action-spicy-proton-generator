@@ -1,0 +1,42 @@
+---
+name: Test
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test a known input
+        uses: ./
+        id: known_input
+        with:
+          name: this is always the same string so it produces a known result
+
+      - name: Verify the output matches
+        run: |
+          if [[ "${{ steps.known_input.outputs.result}}" == "browny-manslaughter" ]]; then
+            echo "matches"
+          else
+            echo "'${{ steps.known_input.outputs.result}}' does not match"
+            exit 1
+          fi
+
+      - name: Test a different input
+        uses: ./
+        id: other_input
+        with:
+          name: ${{ github.run_id }}
+
+      - name: Verify the output is different
+        run: |
+          if [[ "${{ steps.other_input.outputs.result}}" != "browny-manslaughter" ]]; then
+            echo "'${{ steps.other_input.outputs.result}}' was different as expected"
+          else
+            echo "was the same as the known input, which is not right"
+            exit 1
+          fi
+

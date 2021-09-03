@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+set -e
+
 branch_name=$1
 
 spicy_proton_name=$(ruby -rspicy-proton -rdigest/sha1 -e'
