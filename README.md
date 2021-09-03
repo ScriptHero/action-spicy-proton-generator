@@ -72,7 +72,9 @@ following [GitHub recommendations](https://docs.github.com/en/actions/creating-a
     - `patch fix`: a very minor patch
     - `chore`: non-code-related change
     - `breaking change`: contains a breaking change
-1. When you merge your pull request, a GitHub Release is drafted/updated containing the not-yet-released changed
+1. When you merge your pull request, a GitHub Release is drafted/updated
+    - containing the not-yet-released pull request merge commits
+    - named with a version number based on semantic versioning rules
 1. Open Releases, find the draft release (at the top) and hit Edit
 1. Verify that it has the semantic version you want (v`major.minor.release`)
 1. Click Publish Release
